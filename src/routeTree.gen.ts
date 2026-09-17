@@ -9,38 +9,605 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WalletRouteImport } from './routes/wallet'
+import { Route as TransferRouteImport } from './routes/transfer'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as StatementsRouteImport } from './routes/statements'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as ReceiptRouteImport } from './routes/receipt'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as FundRouteImport } from './routes/fund'
+import { Route as CryptoRouteImport } from './routes/crypto'
+import { Route as CardsRouteImport } from './routes/cards'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as AirtimeRouteImport } from './routes/airtime'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as CryptoSendRouteImport } from './routes/crypto.send'
+import { Route as CryptoReceiveRouteImport } from './routes/crypto.receive'
+import { Route as CryptoHistoryRouteImport } from './routes/crypto.history'
+import { Route as CryptoConnectRouteImport } from './routes/crypto.connect'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthOtpRouteImport } from './routes/auth.otp'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthKycRouteImport } from './routes/auth.kyc'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
+import { Route as AdminWalletsRouteImport } from './routes/admin.wallets'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTransactionsRouteImport } from './routes/admin.transactions'
+import { Route as AdminTokenRouteImport } from './routes/admin.token'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminNetworkRouteImport } from './routes/admin.network'
+import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
+import { Route as AdminCryptoRouteImport } from './routes/admin.crypto'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransferRoute = TransferRouteImport.update({
+  id: '/transfer',
+  path: '/transfer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatementsRoute = StatementsRouteImport.update({
+  id: '/statements',
+  path: '/statements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReceiptRoute = ReceiptRouteImport.update({
+  id: '/receipt',
+  path: '/receipt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentsRoute = PaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundRoute = FundRouteImport.update({
+  id: '/fund',
+  path: '/fund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CryptoRoute = CryptoRouteImport.update({
+  id: '/crypto',
+  path: '/crypto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CardsRoute = CardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AirtimeRoute = AirtimeRouteImport.update({
+  id: '/airtime',
+  path: '/airtime',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CryptoSendRoute = CryptoSendRouteImport.update({
+  id: '/send',
+  path: '/send',
+  getParentRoute: () => CryptoRoute,
+} as any)
+const CryptoReceiveRoute = CryptoReceiveRouteImport.update({
+  id: '/receive',
+  path: '/receive',
+  getParentRoute: () => CryptoRoute,
+} as any)
+const CryptoHistoryRoute = CryptoHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => CryptoRoute,
+} as any)
+const CryptoConnectRoute = CryptoConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
+  getParentRoute: () => CryptoRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/auth/register',
+  path: '/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthOtpRoute = AuthOtpRouteImport.update({
+  id: '/auth/otp',
+  path: '/auth/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthKycRoute = AuthKycRouteImport.update({
+  id: '/auth/kyc',
+  path: '/auth/kyc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/auth/forgot',
+  path: '/auth/forgot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminWalletsRoute = AdminWalletsRouteImport.update({
+  id: '/wallets',
+  path: '/wallets',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTransactionsRoute = AdminTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTokenRoute = AdminTokenRouteImport.update({
+  id: '/token',
+  path: '/token',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNetworkRoute = AdminNetworkRouteImport.update({
+  id: '/network',
+  path: '/network',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEmailsRoute = AdminEmailsRouteImport.update({
+  id: '/emails',
+  path: '/emails',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCryptoRoute = AdminCryptoRouteImport.update({
+  id: '/crypto',
+  path: '/crypto',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/airtime': typeof AirtimeRoute
+  '/business': typeof BusinessRoute
+  '/cards': typeof CardsRoute
+  '/crypto': typeof CryptoRouteWithChildren
+  '/fund': typeof FundRoute
+  '/notifications': typeof NotificationsRoute
+  '/payments': typeof PaymentsRoute
+  '/profile': typeof ProfileRoute
+  '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
+  '/settings': typeof SettingsRoute
+  '/statements': typeof StatementsRoute
+  '/support': typeof SupportRoute
+  '/transfer': typeof TransferRoute
+  '/wallet': typeof WalletRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/crypto': typeof AdminCryptoRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/network': typeof AdminNetworkRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/token': typeof AdminTokenRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/wallets': typeof AdminWalletsRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/kyc': typeof AuthKycRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/crypto/connect': typeof CryptoConnectRoute
+  '/crypto/history': typeof CryptoHistoryRoute
+  '/crypto/receive': typeof CryptoReceiveRoute
+  '/crypto/send': typeof CryptoSendRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/airtime': typeof AirtimeRoute
+  '/business': typeof BusinessRoute
+  '/cards': typeof CardsRoute
+  '/crypto': typeof CryptoRouteWithChildren
+  '/fund': typeof FundRoute
+  '/notifications': typeof NotificationsRoute
+  '/payments': typeof PaymentsRoute
+  '/profile': typeof ProfileRoute
+  '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
+  '/settings': typeof SettingsRoute
+  '/statements': typeof StatementsRoute
+  '/support': typeof SupportRoute
+  '/transfer': typeof TransferRoute
+  '/wallet': typeof WalletRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/crypto': typeof AdminCryptoRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/network': typeof AdminNetworkRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/token': typeof AdminTokenRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/wallets': typeof AdminWalletsRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/kyc': typeof AuthKycRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/crypto/connect': typeof CryptoConnectRoute
+  '/crypto/history': typeof CryptoHistoryRoute
+  '/crypto/receive': typeof CryptoReceiveRoute
+  '/crypto/send': typeof CryptoSendRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/airtime': typeof AirtimeRoute
+  '/business': typeof BusinessRoute
+  '/cards': typeof CardsRoute
+  '/crypto': typeof CryptoRouteWithChildren
+  '/fund': typeof FundRoute
+  '/notifications': typeof NotificationsRoute
+  '/payments': typeof PaymentsRoute
+  '/profile': typeof ProfileRoute
+  '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
+  '/settings': typeof SettingsRoute
+  '/statements': typeof StatementsRoute
+  '/support': typeof SupportRoute
+  '/transfer': typeof TransferRoute
+  '/wallet': typeof WalletRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/crypto': typeof AdminCryptoRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/network': typeof AdminNetworkRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/token': typeof AdminTokenRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/wallets': typeof AdminWalletsRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/kyc': typeof AuthKycRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/crypto/connect': typeof CryptoConnectRoute
+  '/crypto/history': typeof CryptoHistoryRoute
+  '/crypto/receive': typeof CryptoReceiveRoute
+  '/crypto/send': typeof CryptoSendRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/airtime'
+    | '/business'
+    | '/cards'
+    | '/crypto'
+    | '/fund'
+    | '/notifications'
+    | '/payments'
+    | '/profile'
+    | '/receipt'
+    | '/rewards'
+    | '/settings'
+    | '/statements'
+    | '/support'
+    | '/transfer'
+    | '/wallet'
+    | '/admin/analytics'
+    | '/admin/audit'
+    | '/admin/crypto'
+    | '/admin/emails'
+    | '/admin/network'
+    | '/admin/settings'
+    | '/admin/token'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/wallets'
+    | '/auth/forgot'
+    | '/auth/kyc'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/auth/register'
+    | '/crypto/connect'
+    | '/crypto/history'
+    | '/crypto/receive'
+    | '/crypto/send'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/airtime'
+    | '/business'
+    | '/cards'
+    | '/crypto'
+    | '/fund'
+    | '/notifications'
+    | '/payments'
+    | '/profile'
+    | '/receipt'
+    | '/rewards'
+    | '/settings'
+    | '/statements'
+    | '/support'
+    | '/transfer'
+    | '/wallet'
+    | '/admin/analytics'
+    | '/admin/audit'
+    | '/admin/crypto'
+    | '/admin/emails'
+    | '/admin/network'
+    | '/admin/settings'
+    | '/admin/token'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/wallets'
+    | '/auth/forgot'
+    | '/auth/kyc'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/auth/register'
+    | '/crypto/connect'
+    | '/crypto/history'
+    | '/crypto/receive'
+    | '/crypto/send'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/airtime'
+    | '/business'
+    | '/cards'
+    | '/crypto'
+    | '/fund'
+    | '/notifications'
+    | '/payments'
+    | '/profile'
+    | '/receipt'
+    | '/rewards'
+    | '/settings'
+    | '/statements'
+    | '/support'
+    | '/transfer'
+    | '/wallet'
+    | '/admin/analytics'
+    | '/admin/audit'
+    | '/admin/crypto'
+    | '/admin/emails'
+    | '/admin/network'
+    | '/admin/settings'
+    | '/admin/token'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/wallets'
+    | '/auth/forgot'
+    | '/auth/kyc'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/auth/register'
+    | '/crypto/connect'
+    | '/crypto/history'
+    | '/crypto/receive'
+    | '/crypto/send'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AirtimeRoute: typeof AirtimeRoute
+  BusinessRoute: typeof BusinessRoute
+  CardsRoute: typeof CardsRoute
+  CryptoRoute: typeof CryptoRouteWithChildren
+  FundRoute: typeof FundRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PaymentsRoute: typeof PaymentsRoute
+  ProfileRoute: typeof ProfileRoute
+  ReceiptRoute: typeof ReceiptRoute
+  RewardsRoute: typeof RewardsRoute
+  SettingsRoute: typeof SettingsRoute
+  StatementsRoute: typeof StatementsRoute
+  SupportRoute: typeof SupportRoute
+  TransferRoute: typeof TransferRoute
+  WalletRoute: typeof WalletRoute
+  AuthForgotRoute: typeof AuthForgotRoute
+  AuthKycRoute: typeof AuthKycRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthOtpRoute: typeof AuthOtpRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transfer': {
+      id: '/transfer'
+      path: '/transfer'
+      fullPath: '/transfer'
+      preLoaderRoute: typeof TransferRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/statements': {
+      id: '/statements'
+      path: '/statements'
+      fullPath: '/statements'
+      preLoaderRoute: typeof StatementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/receipt': {
+      id: '/receipt'
+      path: '/receipt'
+      fullPath: '/receipt'
+      preLoaderRoute: typeof ReceiptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payments': {
+      id: '/payments'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof PaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fund': {
+      id: '/fund'
+      path: '/fund'
+      fullPath: '/fund'
+      preLoaderRoute: typeof FundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crypto': {
+      id: '/crypto'
+      path: '/crypto'
+      fullPath: '/crypto'
+      preLoaderRoute: typeof CryptoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cards': {
+      id: '/cards'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof CardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/airtime': {
+      id: '/airtime'
+      path: '/airtime'
+      fullPath: '/airtime'
+      preLoaderRoute: typeof AirtimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +615,220 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/crypto/send': {
+      id: '/crypto/send'
+      path: '/send'
+      fullPath: '/crypto/send'
+      preLoaderRoute: typeof CryptoSendRouteImport
+      parentRoute: typeof CryptoRoute
+    }
+    '/crypto/receive': {
+      id: '/crypto/receive'
+      path: '/receive'
+      fullPath: '/crypto/receive'
+      preLoaderRoute: typeof CryptoReceiveRouteImport
+      parentRoute: typeof CryptoRoute
+    }
+    '/crypto/history': {
+      id: '/crypto/history'
+      path: '/history'
+      fullPath: '/crypto/history'
+      preLoaderRoute: typeof CryptoHistoryRouteImport
+      parentRoute: typeof CryptoRoute
+    }
+    '/crypto/connect': {
+      id: '/crypto/connect'
+      path: '/connect'
+      fullPath: '/crypto/connect'
+      preLoaderRoute: typeof CryptoConnectRouteImport
+      parentRoute: typeof CryptoRoute
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/otp': {
+      id: '/auth/otp'
+      path: '/auth/otp'
+      fullPath: '/auth/otp'
+      preLoaderRoute: typeof AuthOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/kyc': {
+      id: '/auth/kyc'
+      path: '/auth/kyc'
+      fullPath: '/auth/kyc'
+      preLoaderRoute: typeof AuthKycRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/auth/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/wallets': {
+      id: '/admin/wallets'
+      path: '/wallets'
+      fullPath: '/admin/wallets'
+      preLoaderRoute: typeof AdminWalletsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/transactions': {
+      id: '/admin/transactions'
+      path: '/transactions'
+      fullPath: '/admin/transactions'
+      preLoaderRoute: typeof AdminTransactionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/token': {
+      id: '/admin/token'
+      path: '/token'
+      fullPath: '/admin/token'
+      preLoaderRoute: typeof AdminTokenRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/network': {
+      id: '/admin/network'
+      path: '/network'
+      fullPath: '/admin/network'
+      preLoaderRoute: typeof AdminNetworkRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/emails': {
+      id: '/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AdminEmailsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/crypto': {
+      id: '/admin/crypto'
+      path: '/crypto'
+      fullPath: '/admin/crypto'
+      preLoaderRoute: typeof AdminCryptoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminAuditRoute: typeof AdminAuditRoute
+  AdminCryptoRoute: typeof AdminCryptoRoute
+  AdminEmailsRoute: typeof AdminEmailsRoute
+  AdminNetworkRoute: typeof AdminNetworkRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminTokenRoute: typeof AdminTokenRoute
+  AdminTransactionsRoute: typeof AdminTransactionsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminWalletsRoute: typeof AdminWalletsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminAuditRoute: AdminAuditRoute,
+  AdminCryptoRoute: AdminCryptoRoute,
+  AdminEmailsRoute: AdminEmailsRoute,
+  AdminNetworkRoute: AdminNetworkRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminTokenRoute: AdminTokenRoute,
+  AdminTransactionsRoute: AdminTransactionsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminWalletsRoute: AdminWalletsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface CryptoRouteChildren {
+  CryptoConnectRoute: typeof CryptoConnectRoute
+  CryptoHistoryRoute: typeof CryptoHistoryRoute
+  CryptoReceiveRoute: typeof CryptoReceiveRoute
+  CryptoSendRoute: typeof CryptoSendRoute
+}
+
+const CryptoRouteChildren: CryptoRouteChildren = {
+  CryptoConnectRoute: CryptoConnectRoute,
+  CryptoHistoryRoute: CryptoHistoryRoute,
+  CryptoReceiveRoute: CryptoReceiveRoute,
+  CryptoSendRoute: CryptoSendRoute,
+}
+
+const CryptoRouteWithChildren =
+  CryptoRoute._addFileChildren(CryptoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AirtimeRoute: AirtimeRoute,
+  BusinessRoute: BusinessRoute,
+  CardsRoute: CardsRoute,
+  CryptoRoute: CryptoRouteWithChildren,
+  FundRoute: FundRoute,
+  NotificationsRoute: NotificationsRoute,
+  PaymentsRoute: PaymentsRoute,
+  ProfileRoute: ProfileRoute,
+  ReceiptRoute: ReceiptRoute,
+  RewardsRoute: RewardsRoute,
+  SettingsRoute: SettingsRoute,
+  StatementsRoute: StatementsRoute,
+  SupportRoute: SupportRoute,
+  TransferRoute: TransferRoute,
+  WalletRoute: WalletRoute,
+  AuthForgotRoute: AuthForgotRoute,
+  AuthKycRoute: AuthKycRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthOtpRoute: AuthOtpRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
