@@ -19,6 +19,7 @@ import { Route as ReceiptRouteImport } from './routes/receipt'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as FundRouteImport } from './routes/fund'
 import { Route as CryptoRouteImport } from './routes/crypto'
 import { Route as CardsRouteImport } from './routes/cards'
@@ -95,6 +96,11 @@ const PaymentsRoute = PaymentsRouteImport.update({
 const NotificationsRoute = NotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MobilityRoute = MobilityRouteImport.update({
+  id: '/mobility',
+  path: '/mobility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FundRoute = FundRouteImport.update({
@@ -241,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
+  '/mobility': typeof MobilityRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -279,6 +286,7 @@ export interface FileRoutesByTo {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
+  '/mobility': typeof MobilityRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -319,6 +327,7 @@ export interface FileRoutesById {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
+  '/mobility': typeof MobilityRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -360,6 +369,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/crypto'
     | '/fund'
+    | '/mobility'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -398,6 +408,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/crypto'
     | '/fund'
+    | '/mobility'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -437,6 +448,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/crypto'
     | '/fund'
+    | '/mobility'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -477,6 +489,7 @@ export interface RootRouteChildren {
   CardsRoute: typeof CardsRoute
   CryptoRoute: typeof CryptoRouteWithChildren
   FundRoute: typeof FundRoute
+  MobilityRoute: typeof MobilityRoute
   NotificationsRoute: typeof NotificationsRoute
   PaymentsRoute: typeof PaymentsRoute
   ProfileRoute: typeof ProfileRoute
@@ -564,6 +577,13 @@ declare module '@tanstack/react-router' {
       path: '/notifications'
       fullPath: '/notifications'
       preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mobility': {
+      id: '/mobility'
+      path: '/mobility'
+      fullPath: '/mobility'
+      preLoaderRoute: typeof MobilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fund': {
@@ -813,6 +833,7 @@ const rootRouteChildren: RootRouteChildren = {
   CardsRoute: CardsRoute,
   CryptoRoute: CryptoRouteWithChildren,
   FundRoute: FundRoute,
+  MobilityRoute: MobilityRoute,
   NotificationsRoute: NotificationsRoute,
   PaymentsRoute: PaymentsRoute,
   ProfileRoute: ProfileRoute,

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Bell, Shield, Smartphone, Wifi, Zap, Tv, Ticket, Gift as GiftIcon,
-  ArrowUpRight, ArrowDownLeft, ChevronRight, Sparkles, Users, Repeat, Coins,
+  ArrowUpRight, ArrowDownLeft, ChevronRight, Sparkles, Users, Repeat, Coins, CarFront,
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { WalletCard } from "@/components/WalletCard";
@@ -89,6 +89,20 @@ function Home() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Mobility */}
+      <section className="mt-5 px-5">
+        <Link to="/mobility" className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition hover:border-primary/40">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
+            <CarFront className="h-5 w-5" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold text-foreground">Payroxa Mobility</span>
+            <span className="mt-0.5 block truncate text-[11px] text-muted-foreground">Book rides, deliveries, and logistics</span>
+          </span>
+          <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
+        </Link>
       </section>
 
       {/* Services */}
