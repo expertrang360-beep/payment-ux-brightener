@@ -15,6 +15,9 @@ import {
   PackageCheck,
   Route as RouteIcon,
   ShieldCheck,
+  MessageCircle,
+  Phone,
+  Star,
   Truck,
   UserRound,
   UsersRound,
@@ -22,6 +25,7 @@ import {
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
+import { LiveTripMap } from "@/components/LiveTripMap";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/mobility")({
@@ -65,7 +69,8 @@ function MobilityPage() {
   const [destination, setDestination] = useState("");
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleId>("economy");
   const [scheduled, setScheduled] = useState(false);
-  const [step, setStep] = useState<"plan" | "review" | "confirmed">("plan");
+  const [step, setStep] = useState<"plan" | "review" | "tracking">("plan");
+  const [tripProgress, setTripProgress] = useState(0.36);
 
   const selected = useMemo(
     () => vehicles.find((vehicle) => vehicle.id === selectedVehicle) ?? vehicles[1],
@@ -86,28 +91,48 @@ function MobilityPage() {
 
   const actionLabel = mode === "Ride" ? "Choose ride" : mode === "Delivery" ? "Review delivery" : "Get logistics quote";
 
-  if (step === "confirmed") {
+  if (step === "tracking") {
+    const rideMilestones = [
+      { label: "Ride confirmed", detail: "Your driver accepted", done: true },
+      { label: "Driver en route", detail: "Arriving in 5 minutes", done: tripProgress >= 0.25 },
+      { label: "Pickup", detail: pickup, done: tripProgress >= 0.6 },
+      { label: "Destination", detail: destination, done: tripProgress >= 1 },
+    ];
+    const deliveryMilestones = [
+      { label: "Courier assigned", detail: "Tobi is heading to pickup", done: true },
+      { label: "Package picked up", detail: pickup, done: tripProgress >= 0.35 },
+      { label: "In transit", detail: "Securely on the way", done: tripProgress >= 0.65 },
+      { label: "Delivered", detail: destination, done: tripProgress >= 1 },
+    ];
+    const milestones = mode === "Ride" ? rideMilestones : deliveryMilestones;
     return (
       <AppShell>
-        <PageHeader title="Mobility" back="/" />
-        <section className="flex min-h-[560px] flex-col items-center justify-center px-7 text-center">
-          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-success/10 text-success">
-            <Check className="h-9 w-9" strokeWidth={2.5} />
-          </span>
-          <h1 className="mt-6 text-2xl font-semibold text-foreground">
-            {mode === "Ride" ? "Your driver is on the way" : mode === "Delivery" ? "Courier requested" : "Quote request sent"}
-          </h1>
-          <p className="mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
-            {mode === "Ride" ? "Ayo will arrive at your pickup point in about 5 minutes." : "We’ll match your request with a verified Payroxa mobility partner."}
-          </p>
-          <div className="mt-8 w-full rounded-2xl border border-border bg-card p-4 text-left shadow-soft">
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary"><Navigation className="h-5 w-5" /></span>
-              <div className="min-w-0 flex-1"><p className="text-sm font-semibold text-foreground">Trip ID · PXR-48291</p><p className="mt-0.5 text-xs text-muted-foreground">Track live updates from this page</p></div>
-              <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            </div>
+        <PageHeader title={mode === "Ride" ? "Live trip" : "Track delivery"} subtitle="Trip ID · PXR-48291" back="/mobility" />
+        <LiveTripMap progress={tripProgress} />
+        <section className="relative -mt-4 rounded-t-3xl bg-background px-5 pb-4 pt-5">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+            <div className="min-w-0"><p className="text-xs font-semibold text-primary">{mode === "Ride" ? "DRIVER EN ROUTE" : "COURIER EN ROUTE"}</p><h1 className="mt-1 text-2xl font-semibold text-foreground">Arriving in 5 min</h1><p className="mt-1 text-xs text-muted-foreground">1.8 km away · Estimated 10:24 AM</p></div>
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-xl font-semibold text-primary-foreground">{mode === "Ride" ? "AK" : "TO"}</span>
           </div>
-          <Button className="mt-8 w-full" size="lg" onClick={() => setStep("plan")}>Book another</Button>
+
+          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft">
+            <div className="min-w-0 flex-1"><div className="flex items-center gap-1.5"><p className="text-sm font-semibold text-foreground">{mode === "Ride" ? "Ayo K." : "Tobi O."}</p><span className="flex items-center gap-0.5 text-xs text-warning"><Star className="h-3.5 w-3.5 fill-current" /> 4.9</span></div><p className="mt-0.5 text-xs text-muted-foreground">{mode === "Ride" ? "Toyota Corolla · LSR 428 FX" : "Honda Bike · KJA 312 QM"}</p></div>
+            <Button variant="secondary" size="icon" aria-label="Message partner"><MessageCircle /></Button>
+            <Button variant="secondary" size="icon" aria-label="Call partner"><Phone /></Button>
+          </div>
+
+          <div className="mt-5 flex items-center justify-between"><h2 className="text-sm font-semibold text-foreground">{mode === "Ride" ? "Trip progress" : "Delivery milestones"}</h2><span className="text-[11px] text-muted-foreground">Live updates</span></div>
+          <div className="mt-3 rounded-2xl border border-border bg-card p-4">
+            {milestones.map((milestone, index) => (
+              <div key={milestone.label} className="grid grid-cols-[24px_minmax(0,1fr)] gap-x-3">
+                <div className="flex flex-col items-center"><span className={cn("flex h-6 w-6 items-center justify-center rounded-full border text-background", milestone.done ? "border-success bg-success" : "border-border bg-background")} >{milestone.done && <Check className="h-3.5 w-3.5" />}</span>{index < milestones.length - 1 && <span className={cn("h-9 w-0.5", milestones[index + 1].done ? "bg-success" : "bg-border")} />}</div>
+                <div className="min-w-0 pb-4"><p className={cn("text-sm font-semibold", milestone.done ? "text-foreground" : "text-muted-foreground")}>{milestone.label}</p><p className="mt-0.5 truncate text-[11px] text-muted-foreground">{milestone.detail}</p></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3"><Button variant="outline" onClick={() => setTripProgress((value) => Math.min(1, value + 0.34))}>Simulate update</Button><Button variant="secondary" onClick={() => setStep("plan")}>End tracking</Button></div>
+          <div className="mt-4 flex items-center gap-3 rounded-xl bg-success/5 p-3"><ShieldCheck className="h-5 w-5 shrink-0 text-success" /><p className="text-[11px] leading-4 text-foreground">Share trip details or contact 24/7 safety support if you need help.</p></div>
         </section>
       </AppShell>
     );
@@ -148,7 +173,7 @@ function MobilityPage() {
             <p className="text-base font-semibold text-foreground">₦{selected.price.toLocaleString("en-NG")}</p>
           </div>
           <div className="mt-3 flex items-center gap-3 rounded-2xl bg-success/5 p-4"><ShieldCheck className="h-5 w-5 shrink-0 text-success" /><p className="text-xs leading-5 text-foreground">Every trip includes verified partners, live tracking, and safety support.</p></div>
-          <Button className="mt-6 w-full" size="lg" onClick={() => setStep("confirmed")}>{mode === "Ride" ? `Book ${selected.name}` : mode === "Delivery" ? "Request courier" : "Request quote"}</Button>
+          <Button className="mt-6 w-full" size="lg" onClick={() => setStep("tracking")}>{mode === "Ride" ? `Book ${selected.name}` : mode === "Delivery" ? "Request courier" : "Request quote"}</Button>
           <p className="mt-3 text-center text-[11px] text-muted-foreground">Payment will be taken from your Payroxa wallet</p>
         </section>
       ) : (
