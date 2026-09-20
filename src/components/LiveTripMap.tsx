@@ -53,8 +53,8 @@ function loadMaps() {
 
 export function LiveTripMap({ progress }: { progress: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<MapInstance>();
-  const vehicleRef = useRef<MarkerInstance>();
+  const mapRef = useRef<MapInstance | undefined>(undefined);
+  const vehicleRef = useRef<MarkerInstance | undefined>(undefined);
   const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {

@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { triageTripIssue, type TripIssueTriage } from "@/lib/trip-support.functions";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/mobility/support")({
+export const Route = createFileRoute("/mobility-support")({
   head: () => ({
     meta: [
       { title: "Trip help · Payroxa Mobility" },
