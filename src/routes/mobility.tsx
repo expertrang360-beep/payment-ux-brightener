@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   MessageCircle,
   Phone,
+  Sparkles,
   Star,
   Truck,
   UserRound,
