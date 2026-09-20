@@ -19,6 +19,7 @@ import { Route as ReceiptRouteImport } from './routes/receipt'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MobilitySupportRouteImport } from './routes/mobility-support'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as FundRouteImport } from './routes/fund'
 import { Route as CryptoRouteImport } from './routes/crypto'
@@ -28,7 +29,6 @@ import { Route as AirtimeRouteImport } from './routes/airtime'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as MobilitySupportRouteImport } from './routes/mobility.support'
 import { Route as CryptoSendRouteImport } from './routes/crypto.send'
 import { Route as CryptoReceiveRouteImport } from './routes/crypto.receive'
 import { Route as CryptoHistoryRouteImport } from './routes/crypto.history'
@@ -99,6 +99,11 @@ const NotificationsRoute = NotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MobilitySupportRoute = MobilitySupportRouteImport.update({
+  id: '/mobility-support',
+  path: '/mobility-support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MobilityRoute = MobilityRouteImport.update({
   id: '/mobility',
   path: '/mobility',
@@ -143,11 +148,6 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
-} as any)
-const MobilitySupportRoute = MobilitySupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => MobilityRoute,
 } as any)
 const CryptoSendRoute = CryptoSendRouteImport.update({
   id: '/send',
@@ -253,7 +253,8 @@ export interface FileRoutesByFullPath {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
-  '/mobility': typeof MobilityRouteWithChildren
+  '/mobility': typeof MobilityRoute
+  '/mobility-support': typeof MobilitySupportRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -283,7 +284,6 @@ export interface FileRoutesByFullPath {
   '/crypto/history': typeof CryptoHistoryRoute
   '/crypto/receive': typeof CryptoReceiveRoute
   '/crypto/send': typeof CryptoSendRoute
-  '/mobility/support': typeof MobilitySupportRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -293,7 +293,8 @@ export interface FileRoutesByTo {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
-  '/mobility': typeof MobilityRouteWithChildren
+  '/mobility': typeof MobilityRoute
+  '/mobility-support': typeof MobilitySupportRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -323,7 +324,6 @@ export interface FileRoutesByTo {
   '/crypto/history': typeof CryptoHistoryRoute
   '/crypto/receive': typeof CryptoReceiveRoute
   '/crypto/send': typeof CryptoSendRoute
-  '/mobility/support': typeof MobilitySupportRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -335,7 +335,8 @@ export interface FileRoutesById {
   '/cards': typeof CardsRoute
   '/crypto': typeof CryptoRouteWithChildren
   '/fund': typeof FundRoute
-  '/mobility': typeof MobilityRouteWithChildren
+  '/mobility': typeof MobilityRoute
+  '/mobility-support': typeof MobilitySupportRoute
   '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/profile': typeof ProfileRoute
@@ -365,7 +366,6 @@ export interface FileRoutesById {
   '/crypto/history': typeof CryptoHistoryRoute
   '/crypto/receive': typeof CryptoReceiveRoute
   '/crypto/send': typeof CryptoSendRoute
-  '/mobility/support': typeof MobilitySupportRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -379,6 +379,7 @@ export interface FileRouteTypes {
     | '/crypto'
     | '/fund'
     | '/mobility'
+    | '/mobility-support'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -408,7 +409,6 @@ export interface FileRouteTypes {
     | '/crypto/history'
     | '/crypto/receive'
     | '/crypto/send'
-    | '/mobility/support'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -419,6 +419,7 @@ export interface FileRouteTypes {
     | '/crypto'
     | '/fund'
     | '/mobility'
+    | '/mobility-support'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -448,7 +449,6 @@ export interface FileRouteTypes {
     | '/crypto/history'
     | '/crypto/receive'
     | '/crypto/send'
-    | '/mobility/support'
     | '/admin'
   id:
     | '__root__'
@@ -460,6 +460,7 @@ export interface FileRouteTypes {
     | '/crypto'
     | '/fund'
     | '/mobility'
+    | '/mobility-support'
     | '/notifications'
     | '/payments'
     | '/profile'
@@ -489,7 +490,6 @@ export interface FileRouteTypes {
     | '/crypto/history'
     | '/crypto/receive'
     | '/crypto/send'
-    | '/mobility/support'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -501,7 +501,8 @@ export interface RootRouteChildren {
   CardsRoute: typeof CardsRoute
   CryptoRoute: typeof CryptoRouteWithChildren
   FundRoute: typeof FundRoute
-  MobilityRoute: typeof MobilityRouteWithChildren
+  MobilityRoute: typeof MobilityRoute
+  MobilitySupportRoute: typeof MobilitySupportRoute
   NotificationsRoute: typeof NotificationsRoute
   PaymentsRoute: typeof PaymentsRoute
   ProfileRoute: typeof ProfileRoute
@@ -591,6 +592,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mobility-support': {
+      id: '/mobility-support'
+      path: '/mobility-support'
+      fullPath: '/mobility-support'
+      preLoaderRoute: typeof MobilitySupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mobility': {
       id: '/mobility'
       path: '/mobility'
@@ -653,13 +661,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
-    }
-    '/mobility/support': {
-      id: '/mobility/support'
-      path: '/support'
-      fullPath: '/mobility/support'
-      preLoaderRoute: typeof MobilitySupportRouteImport
-      parentRoute: typeof MobilityRoute
     }
     '/crypto/send': {
       id: '/crypto/send'
@@ -844,18 +845,6 @@ const CryptoRouteChildren: CryptoRouteChildren = {
 const CryptoRouteWithChildren =
   CryptoRoute._addFileChildren(CryptoRouteChildren)
 
-interface MobilityRouteChildren {
-  MobilitySupportRoute: typeof MobilitySupportRoute
-}
-
-const MobilityRouteChildren: MobilityRouteChildren = {
-  MobilitySupportRoute: MobilitySupportRoute,
-}
-
-const MobilityRouteWithChildren = MobilityRoute._addFileChildren(
-  MobilityRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
@@ -864,7 +853,8 @@ const rootRouteChildren: RootRouteChildren = {
   CardsRoute: CardsRoute,
   CryptoRoute: CryptoRouteWithChildren,
   FundRoute: FundRoute,
-  MobilityRoute: MobilityRouteWithChildren,
+  MobilityRoute: MobilityRoute,
+  MobilitySupportRoute: MobilitySupportRoute,
   NotificationsRoute: NotificationsRoute,
   PaymentsRoute: PaymentsRoute,
   ProfileRoute: ProfileRoute,
