@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   ArrowDownUp,
@@ -224,6 +224,12 @@ function MobilityPage() {
 
           <section className="mt-6 px-5">
             <div className="flex items-center gap-3 rounded-2xl bg-primary-soft p-4"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-background text-primary"><UserRound className="h-5 w-5" /></span><div><p className="text-xs font-semibold text-foreground">Safer journeys with Payroxa</p><p className="mt-0.5 text-[11px] leading-4 text-muted-foreground">Verified partners, trip sharing, and 24/7 support.</p></div></div>
+            <Button variant="outline" className="mt-3 w-full justify-between" asChild>
+              <Link to="/mobility-support">
+                <span className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-primary" /> Problem with a trip or delivery?</span>
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
+            </Button>
           </section>
         </>
       )}
