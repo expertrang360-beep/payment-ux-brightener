@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, Phone, Mail, ChevronRight, Search, LifeBuoy } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { MessageCircle, Phone, Mail, ChevronRight, Search, LifeBuoy, Sparkles } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -45,6 +45,20 @@ function SupportPage() {
             </div>
           </div>
         </div>
+
+        <Link
+          to="/mobility-support"
+          className="mt-3 flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft"
+        >
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+            <Sparkles className="h-5 w-5" />
+          </span>
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-foreground">Ride or delivery issue</p>
+            <p className="text-[11px] text-muted-foreground">Instant triage and next steps</p>
+          </div>
+          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+        </Link>
 
         <div className="mt-5 space-y-2">
           {channels.map((c) => {
